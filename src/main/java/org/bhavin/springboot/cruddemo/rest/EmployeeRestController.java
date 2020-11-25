@@ -2,8 +2,9 @@ package org.bhavin.springboot.cruddemo.rest;
 
 import java.util.List;
 
-import org.bhavin.springboot.cruddemo.dao.EmployeeDAO;
+//import org.bhavin.springboot.cruddemo.dao.EmployeeDAO;
 import org.bhavin.springboot.cruddemo.entity.Employee;
+import org.bhavin.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class EmployeeRestController {
 	
-	private EmployeeDAO employeeDAO;
+	private EmployeeService employeeService;
 	
 	// inject employee dao
 	@Autowired
-	public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
-		employeeDAO = theEmployeeDAO;
+	public EmployeeRestController(EmployeeService theEmployeeService) {
+		employeeService = theEmployeeService;
 	}
 	
 	// Return list of employees
 	@GetMapping("/employees")
 	public List<Employee> showAll() {
-		return employeeDAO.findAll();
+		return employeeService.findAll();
 	}
 	
 }
